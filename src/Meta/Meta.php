@@ -16,7 +16,7 @@ use function update_metadata;
 abstract class Meta
 {
     /**
-     * Implement by returning the a string representing the $meta_type argument.
+     * Implement by returning a string representing the $meta_type argument.
      *
      * @return string
      *
