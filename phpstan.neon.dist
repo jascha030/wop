@@ -12,6 +12,8 @@ parameters:
   excludePaths:
       analyseAndScan:
         - tests/*/Fixtures/*
+  scanDirectories:
+    - vendor/roots/wordpress-no-content
 
   tmpDir: .var/cache/phpstan
   editorUrl: 'phpstorm://open?file=%%file%%&line=%%line%%'
