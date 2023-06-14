@@ -9,7 +9,6 @@ use PhpOption\Option;
 use PhpOption\Some;
 use function add_metadata;
 use function delete_metadata;
-use function delete_post_meta;
 use function get_metadata;
 use function update_metadata;
 
@@ -18,18 +17,12 @@ abstract class Meta
     /**
      * Implement by returning a string representing the $meta_type argument.
      *
-     * @return string
-     *
      * @see  get_metadata()
-     * @link https://developer.wordpress.org/reference/functions/get_metadata
+     * @see https://developer.wordpress.org/reference/functions/get_metadata
      */
     abstract protected static function getMetaType(): string;
 
     /**
-     * @param int    $postId
-     * @param string $key
-     * @param bool   $single
-     *
      * @return Option<mixed>
      */
     public static function get(int $postId, string $key, bool $single = false): Option
@@ -42,11 +35,6 @@ abstract class Meta
     }
 
     /**
-     * @param int    $objectId
-     * @param string $key
-     * @param mixed  $value
-     * @param bool   $unique
-     *
      * @return Option<int>
      */
     public static function add(int $objectId, string $key, mixed $value, bool $unique = false): Option
@@ -59,11 +47,6 @@ abstract class Meta
     }
 
     /**
-     * @param int    $objectId
-     * @param string $key
-     * @param mixed  $value
-     * @param string $prevValue
-     *
      * @return Option<mixed>
      */
     public static function update(int $objectId, string $key, mixed $value, string $prevValue = ''): Option
@@ -76,17 +59,12 @@ abstract class Meta
             $prevValue
         );
 
-        return $result === false
+        return false === $result
             ? None::create()
             : new Some($value);
     }
 
     /**
-     * @param int    $objectId
-     * @param string $key
-     * @param mixed  $value
-     * @param bool   $deleteAll
-     *
      * @return Option<bool>
      */
     public static function delete(int $objectId, string $key, mixed $value, bool $deleteAll = false): Option
